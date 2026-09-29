@@ -21,23 +21,25 @@
       if (back) document.documentElement.classList.add("is-player-return");
     })();
   </script>
-  <link rel="stylesheet" href="css/home.css?v=24" />
-  <link rel="stylesheet" href="css/tabbar.css?v=4" />
-  <link rel="stylesheet" href="css/device.css?v=3" />
+  <link rel="stylesheet" href="css/home.css?v=30" />
+  <link rel="stylesheet" href="css/tabbar.css?v=6" />
+  <link rel="stylesheet" href="css/device.css?v=7" />
 </head>
 <body>
   <div class="device" id="device">
   <div class="device-screen" id="device-screen">
   <main class="home">
-    <section class="hero" aria-label="Подборка">
-      <img class="hero-image" src="assets/home/hero.jpg" alt="Вера и Фома. История в комиксах" />
+    <section class="hero" id="hero" aria-label="Подборка" role="button" tabindex="0">
+      <img class="hero-image" id="hero-image" src="https://thumbs.dfs.ivi.ru/storage0/contents/1/2/ec78c20c1c4dd589674c262100936d.jpg" alt="Маша и Медведь" />
+      <img class="hero-logo" id="hero-logo" src="https://thumbs.dfs.ivi.ru/storage0/contents/1/d/989282987043ac955e502372a231b6.jpg" alt="" />
     </section>
     <div class="hero-card">
-      <p>Вера и Фома путешествуют по разным эпохам. Красочные комиксы для детей об исторических личностях</p>
+      <p id="hero-text">Знаменитый мультсериал о дружбе и приключениях бывшего циркового артиста Медведя и весёлой девочки Маши, которая не даёт заскучать не только ему, но и всем лесным жителям, и маленьким зрителям.</p>
     </div>
     <div class="dots" aria-hidden="true">
       <span></span><span class="active"></span><span></span><span></span><span></span>
     </div>
+    <section class="continue" id="continue" hidden></section>
 
     <div id="shelves">
       <p class="shelves-status">Загружаем подборки…</p>
@@ -47,7 +49,7 @@
   <nav class="tabbar" aria-label="Основная навигация">
     <a class="tab active" href="index.html" aria-current="page"><img src="assets/Иконки/лента.png" alt="" />Лента</a>
     <a class="tab" href="search/index.html"><img src="assets/Иконки/поиск.png" alt="" />Поиск</a>
-    <a class="tab" href="games/index.html"><img src="assets/Иконки/игры.png" alt="" />Игры</a>
+    <a class="tab tab-games" href="games/index.html"><span class="tab-owl-slot" aria-hidden="true"></span><img class="tab-owl" src="assets/tab/owl.png" alt="" />Игры</a>
     <a class="tab" href="#"><img src="assets/Иконки/мое.png" alt="" />Моё</a>
     <a class="tab" href="#"><img src="assets/Иконки/Тася.png" alt="" />Тася</a>
   </nav>
@@ -166,7 +168,7 @@
             </button>
             <button type="button" class="ep ep-game" data-game="coloring">
               <span class="ep-cover">
-                <img class="ep-thumb" src="assets/games/coloring-cover.png" alt="" />
+                <img class="ep-thumb" src="assets/games/coloring-cover.png?v=2" alt="" />
                 <span class="ep-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 7h9A4.5 4.5 0 0 1 21 11.5v3.2a3.3 3.3 0 0 1-5.8 2.2L13.8 15h-3.6l-1.4 1.9A3.3 3.3 0 0 1 3 14.7v-3.2A4.5 4.5 0 0 1 7.5 7z" fill="currentColor"/><path d="M7.6 9.6v3.2M6 11.2h3.2" stroke="#ea003d" stroke-width="1.6" stroke-linecap="round"/><circle cx="15.6" cy="10.4" r="1.1" fill="#ea003d"/><circle cx="17.6" cy="12.4" r="1.1" fill="#ea003d"/></svg></span>
               </span>
               <span class="ep-title">Играть</span>
@@ -222,7 +224,7 @@
   </div>
   </div>
 
-  <script src="js/device.js?v=3"></script>
-  <script src="js/home.js?v=13"></script>
+  <script src="js/device.js?v=7"></script>
+  <script src="js/home.js?v=19"></script>
 </body>
 </html>

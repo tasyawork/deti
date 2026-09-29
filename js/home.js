@@ -59,6 +59,106 @@
     return shelfMarkup(shelf.title, data.result);
   }
 
+  async function loadHero() {
+    const response = await fetch(
+      "https://api2.ivi.ru/mobileapi/compilationinfo/v7/" +
+      `?${QUERY}&id=7312&fields=id,title,synopsis,description,promo_images,title_image`
+    );
+    const data = await response.json();
+    const item = data.result;
+    if (!item) return;
+    const promos = item.promo_images || [];
+    const background = promos.find((image) => image.content_format === "BackgroundImage-1280x720");
+    const titles = item.title_image || [];
+    const logo = titles.find((image) => image.content_format === "TitleImage-UpTo3000x3000");
+    const image = document.getElementById("hero-image");
+    const logoImage = document.getElementById("hero-logo");
+    if (background && background.url && image.getAttribute("src") !== background.url) image.src = background.url;
+    if (logo && logo.url && logoImage && logoImage.getAttribute("src") !== logo.url) logoImage.src = logo.url;
+    if (item.title) image.alt = item.title;
+    const text = (item.synopsis || item.description || "").replace(/<[^>]*>/g, "").trim();
+    if (text) document.getElementById("hero-text").textContent = text;
+  }
+
+  function continueYear(raw) {
+    const years = Array.isArray(raw.years) ? raw.years.filter(Boolean) : [];
+    if (years.length) {
+      const start = years[0];
+      const end = years[years.length - 1];
+      return start === end ? String(start) : `${start}–${end}`;
+    }
+    return raw.year ? String(raw.year) : "";
+  }
+
+  function shotUrls(item) {
+    return (item.promo_images || [])
+      .filter((image) => String(image.content_format || "").toLowerCase() === "shots-1920x1080" && image.url)
+      .map((image) => image.url);
+  }
+
+  async function catalogItems(hru) {
+    const response = await fetch(
+      "https://api2.ivi.ru/mobileapi/collection/catalog/v7/" +
+      `?${QUERY}&hru=${encodeURIComponent(hru)}&sort=relevance` +
+      "&fields=id,title,object_type,year,years,promo_images&from=0&to=24"
+    );
+    const data = await response.json();
+    return Array.isArray(data.result) ? data.result : [];
+  }
+
+  async function loadContinue() {
+    const host = document.getElementById("continue");
+    if (!host) return;
+    const picked = [];
+    const seen = new Set();
+    for (const hru of ["kids-7-12", "sayhellotofall", "russian-cartoons"]) {
+      if (picked.length >= 6) break;
+      const items = await catalogItems(hru);
+      for (const item of items) {
+        if (!item || !item.title || seen.has(item.id)) continue;
+        const shots = shotUrls(item);
+        if (!shots.length) continue;
+        seen.add(item.id);
+        picked.push({ item, shots });
+        if (picked.length >= 6) break;
+      }
+    }
+    if (!picked.length) return;
+    const cards = picked.map(({ item, shots }) => {
+      const year = continueYear(item);
+      const kind = item.object_type === "content" ? "Фильм" : "Сериал";
+      const sub = year ? `${year}, ${kind}` : kind;
+      const progress = 22 + (Number(item.id) % 58);
+      const name = escapeHtml(item.title);
+      const [src, ...rest] = shots;
+      return `<a class="cw" href="#">
+        <img class="cw__img" src="${escapeHtml(src)}" data-rest="${escapeHtml(rest.join("|"))}" alt="${name}" draggable="false" />
+        <span class="cw__shade"><span class="cw__copy">
+          <span class="cw__title">${name}</span>
+          <span class="cw__sub">${escapeHtml(sub)}</span>
+        </span></span>
+        <span class="cw__progress"><span style="width:${progress}%"></span></span>
+      </a>`;
+    }).join("");
+    const promo = `<a class="cw cw-game" href="#" data-game="coloring" aria-label="Раскрась Трёх котов">
+        <span class="cw-game__cats" aria-hidden="true">
+          <img src="assets/coloring/korzhik.svg" alt="" draggable="false" />
+          <img src="assets/coloring/karamelka.svg" alt="" draggable="false" />
+          <img src="assets/coloring/kompot.svg" alt="" draggable="false" />
+        </span>
+        <span class="cw-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 6h10a5 5 0 0 1 4.9 6l-.8 4a3 3 0 0 1-5.2 1.3L14.2 15H9.8l-1.7 2.3A3 3 0 0 1 2.9 16l-.8-4A5 5 0 0 1 7 6Zm0 3v1.5H5.5v2H7V14h2v-1.5h1.5v-2H9V9H7Zm9.5 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-2 2.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg>Игра</span>
+        <span class="cw__shade"><span class="cw__copy">
+          <span class="cw__title">Раскрась Трёх котов</span>
+          <span class="cw__sub">Вы смотрели Три Кота</span>
+        </span></span>
+      </a>`;
+    host.hidden = false;
+    host.innerHTML = `<h2>Продолжить просмотр</h2><div class="row">${promo}${cards}</div>`;
+  }
+
+  loadHero().catch(() => {});
+  loadContinue().catch(() => {});
+
   let restoreFeedScroll = null;
 
   Promise.all(SHELVES.map((shelf) => loadShelf(shelf).catch(() => "")))
@@ -268,6 +368,68 @@
       return;
     }
     openPlayer();
+  });
+
+  const continueRow = document.getElementById("continue");
+  continueRow.addEventListener("error", (event) => {
+    const img = event.target;
+    if (!img.classList || !img.classList.contains("cw__img")) return;
+    const rest = (img.dataset.rest || "").split("|").filter(Boolean);
+    const next = rest.shift();
+    img.dataset.rest = rest.join("|");
+    if (next) img.src = next;
+  }, true);
+  continueRow.addEventListener("click", (event) => {
+    const card = event.target.closest(".cw");
+    if (!card || !continueRow.contains(card)) return;
+    event.preventDefault();
+    if (card.dataset.dragged === "1") {
+      card.dataset.dragged = "";
+      return;
+    }
+    if (card.dataset.game) {
+      let variant = "1";
+      try {
+        variant = sessionStorage.getItem("kids-games-variant") || "1";
+        sessionStorage.removeItem("kids-player-return");
+      } catch (e) {}
+      window.location.href = variant === "2" ? "games/v2/index.html" : "games/index.html#coloring";
+      return;
+    }
+    openPlayer();
+  });
+  continueRow.addEventListener("pointerdown", (event) => {
+    const card = event.target.closest(".cw");
+    if (!card || !continueRow.contains(card)) return;
+    const startX = event.clientX;
+    const startY = event.clientY;
+    const row = card.parentElement;
+    const startLeft = row ? row.scrollLeft : 0;
+    const startTop = screen.scrollTop;
+    let moved = false;
+    const onMove = (ev) => {
+      if (Math.hypot(ev.clientX - startX, ev.clientY - startY) > DRAG) moved = true;
+    };
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      if (row && Math.abs(row.scrollLeft - startLeft) > 2) moved = true;
+      if (Math.abs(screen.scrollTop - startTop) > 2) moved = true;
+      card.dataset.dragged = moved ? "1" : "";
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+  });
+
+  const hero = document.getElementById("hero");
+  hero.addEventListener("click", () => openPlayer());
+  hero.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openPlayer();
+    }
   });
 
   backBtn.addEventListener("click", (event) => {
@@ -526,7 +688,9 @@
     closePlayer();
     const delay = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 600;
     setTimeout(() => {
-      window.location.href = "games/index.html";
+      let variant = "1";
+      try { variant = sessionStorage.getItem("kids-games-variant") || "1"; } catch (e) {}
+      window.location.href = variant === "2" ? "games/v2/index.html" : "games/index.html";
     }, delay);
   }
 

@@ -32,7 +32,25 @@
     const w = landscape ? HEIGHT : WIDTH;
     const h = landscape ? WIDTH : HEIGHT;
     const scale = Math.min(1, (window.innerWidth - PAD) / w, (window.innerHeight - PAD) / h);
-    device.style.setProperty("--device-scale", String(Math.max(0.2, scale)));
+    const value = String(Math.max(0.2, scale));
+    document.documentElement.style.setProperty("--device-scale", value);
+    device.style.setProperty("--device-scale", value);
+    placeSwitcher();
+  }
+
+  function placeSwitcher() {
+    const el = document.querySelector(".variant-switch");
+    if (!el) return;
+    const scale = parseFloat(device.style.getPropertyValue("--device-scale")) || 1;
+    const frameLeft = (window.innerWidth - WIDTH * scale) / 2;
+    const gap = 20;
+    const edge = 16;
+    el.classList.remove("is-compact");
+    if (frameLeft - el.offsetWidth - gap < edge) el.classList.add("is-compact");
+    const width = el.offsetWidth;
+    el.style.transform = "translateY(-50%)";
+    el.style.top = "50%";
+    el.style.left = `${Math.max(edge, frameLeft - width - gap)}px`;
   }
 
   function matrix() {
@@ -54,6 +72,12 @@
     const top = Math.min(a.y, b.y);
     return { left, top, width: Math.abs(b.x - a.x), height: Math.abs(b.y - a.y) };
   }
+
+  document.querySelectorAll(".variant-switch a").forEach((link) => {
+    link.addEventListener("click", () => {
+      try { sessionStorage.setItem("kids-games-variant", link.dataset.variant || "1"); } catch (e) {}
+    });
+  });
 
   window.addEventListener("resize", applyScale);
   applyScale();

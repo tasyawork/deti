@@ -38,6 +38,17 @@ body {
   object-fit: cover;
 }
 
+.hero-logo {
+  position: absolute;
+  z-index: 1;
+  left: 16px;
+  top: 50%;
+  width: 260px;
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -61,8 +72,14 @@ body {
   line-height: 1.4;
 }
 
+.hero { cursor: pointer; }
+
 .hero-card p {
   margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .dots {
@@ -83,6 +100,136 @@ body {
   background: #fff;
 }
 
+.continue {
+  margin-top: 18px;
+}
+
+.continue h2 {
+  margin: 0 0 12px;
+  padding: 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.cw {
+  position: relative;
+  flex: 0 0 259px;
+  width: 259px;
+  height: 145px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #161616;
+  scroll-snap-align: start;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cw__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cw__shade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 60%;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px 10px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent);
+}
+
+.cw__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cw__title {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cw__sub {
+  font-size: 13px;
+  line-height: 16px;
+  opacity: 0.72;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cw__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.cw__progress span {
+  display: block;
+  height: 100%;
+  background: #f30745;
+}
+
+.cw-game {
+  background: #fff4e0;
+}
+
+.cw-game__cats {
+  position: absolute;
+  inset: 2px 4px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.cw-game__cats img {
+  width: 34%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  transform: scale(1.22);
+  transform-origin: 50% 100%;
+}
+
+.cw-game .cw__shade {
+  height: auto;
+  padding-top: 26px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 45%, transparent);
+}
+
+.cw-badge {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px 0 6px;
+  border-radius: 11px;
+  background: #f30745;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cw-badge svg { width: 14px; height: 14px; }
+
 .shelf {
   margin-top: 18px;
 }
@@ -91,12 +238,16 @@ body {
   margin-top: 32px;
 }
 
+.continue:not([hidden]) + #shelves > .shelf:first-child {
+  margin-top: 32px;
+}
+
 .shelf-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: inherit;
   text-decoration: none;
 }
@@ -427,7 +578,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;

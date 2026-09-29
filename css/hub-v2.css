@@ -283,6 +283,21 @@ body:has(.reels.is-locked) .back {
 .game:not(.is-open) .game-view,
 .game:not(.is-open) .game-view * { pointer-events: none; }
 
+.game.is-inline {
+  cursor: default;
+  touch-action: pan-y;
+}
+
+.game.is-inline > .game-view {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.game.is-inline .game-view * {
+  pointer-events: auto;
+}
+
 .soon-screen {
   height: 100%;
   display: flex;

@@ -109,3 +109,50 @@ html.is-player-return .series-sheet {
 @media (prefers-reduced-motion: reduce) {
   :root { --device-time: 1ms; }
 }
+
+/* Переключатель вариантов слева от рамки. Рамку не двигает и не уменьшает. */
+.variant-switch {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: calc(50% - (var(--screen-w) / 2) * var(--device-scale, 1) - 20px - 110px);
+  width: 110px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variant-switch a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border-radius: 10px;
+  background: #1f1f22;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font: 500 14px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.variant-switch.is-compact { width: 84px; gap: 6px; }
+
+.variant-switch.is-compact a {
+  height: 30px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.variant-switch a:hover {
+  background: #2a2a2e;
+  color: #fff;
+}
+
+.variant-switch a[aria-current="page"] {
+  background: #f2f2f7;
+  box-shadow: 0 0 0 3px rgba(242, 242, 247, 0.18);
+  color: #111113;
+}

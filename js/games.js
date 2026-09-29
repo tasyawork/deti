@@ -165,7 +165,6 @@
     game.classList.add("is-open");
     frame(game, fullRect(), 0);
     reels.classList.add("is-locked");
-    if (!instances.has(game)) game.classList.add("is-loading");
     afterMorph(game, () => {
       busy = false;
       load(game);
@@ -194,15 +193,25 @@
     });
   }
 
+  function snapOffset(slide) {
+    const align = (getComputedStyle(slide).scrollSnapAlign || "start").split(/\s+/)[0];
+    const style = getComputedStyle(reels);
+    const padTop = parseFloat(style.scrollPaddingTop) || 0;
+    const padBottom = parseFloat(style.scrollPaddingBottom) || 0;
+    const top = slide.offsetTop;
+    const height = slide.offsetHeight;
+    const view = reels.clientHeight;
+    if (align === "center") return top + height / 2 - (padTop + view - padBottom) / 2;
+    if (align === "end") return top + height - (view - padBottom);
+    return top - padTop;
+  }
+
   games.forEach((game) => {
     game.addEventListener("click", () => {
       if (current) return;
-      const card = localRect(game);
-      const box = localRect(reels);
-      const pad = parseFloat(getComputedStyle(reels).scrollPaddingTop);
-      const snap = Number.isFinite(pad) ? pad : 12;
-      if (Math.abs(card.top - (box.top + snap)) > 40) {
-        reels.scrollTo({ top: game.parentElement.offsetTop - snap, behavior: "smooth" });
+      const target = snapOffset(game.parentElement);
+      if (Math.abs(reels.scrollTop - target) > 8) {
+        reels.scrollTo({ top: target, behavior: "smooth" });
         return;
       }
       open(game);
@@ -296,4 +305,9 @@
   });
 
   games.forEach(rest);
+
+  if (location.hash === "#coloring") {
+    const target = games.find((game) => game.dataset.title === "Раскраска");
+    if (target) reels.scrollTop = snapOffset(target.parentElement);
+  }
 })();

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#000000" />
+  <title>Игры</title>
+  <script>document.documentElement.style.setProperty("--device-scale", Math.max(0.2, Math.min(1, (innerWidth - 32) / 430, (innerHeight - 32) / 932)));</script>
+  <link rel="stylesheet" href="../../css/hub-v2.css?v=5" />
+  <link rel="stylesheet" href="../../css/device.css?v=7" />
+</head>
+<body>
+  <nav class="variant-switch" aria-label="Вариант оформления">
+    <a href="../index.html" data-variant="1">Вариант 1</a>
+    <a href="index.html" data-variant="2" aria-current="page">Вариант 2</a>
+  </nav>
+  <div class="device" id="device">
+  <div class="device-screen" id="device-screen">
+  <a class="back" href="../../index.html" aria-label="Назад">
+    <svg width="24" height="24" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
+  <main class="reels" id="reels" aria-label="Игры">
+    <div class="slide">
+      <article class="game is-inline" data-game="coloring" data-title="Раскраска" aria-label="Раскраска">
+        <div class="game-view"></div>
+      </article>
+    </div>
+
+    <div class="slide">
+      <article class="game is-inline" data-game="coloring" data-title="Раскраска" aria-label="Раскраска">
+        <div class="game-view"></div>
+      </article>
+    </div>
+
+    <div class="slide">
+      <article class="game is-inline" data-game="coloring" data-title="Раскраска" aria-label="Раскраска">
+        <div class="game-view"></div>
+      </article>
+    </div>
+  </main>
+
+  </div>
+  </div>
+
+  <script src="../../js/device.js?v=7"></script>
+  <script src="../../js/paint-v2.js?v=1"></script>
+  <script src="../../js/games-v2.js?v=4"></script>
+</body>
+</html>
