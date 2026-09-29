@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#000000" />
+  <title>Игры</title>
+  <script>document.documentElement.style.setProperty("--device-scale", Math.max(0.2, Math.min(1, (innerWidth - 32) / 430, (innerHeight - 32) / 932)));</script>
+  <link rel="stylesheet" href="../css/hub.css?v=24" />
+  <link rel="stylesheet" href="../css/device.css?v=3" />
+</head>
+<body>
+  <div class="device" id="device">
+  <div class="device-screen" id="device-screen">
+  <a class="back" href="../index.html" aria-label="Назад">
+    <svg width="24" height="24" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
+  <main class="reels" id="reels" aria-label="Игры">
+    <div class="slide">
+      <article class="game" data-game="coloring" data-title="Раскраска" tabindex="0" aria-label="Раскраска">
+        <div class="cover cover-coloring">
+          <img src="../assets/games/coloring-cover.png" alt="" />
+          <div class="cover-caption">
+            <h2>Раскраска</h2>
+            <p>Коржик, Карамелька и Компот</p>
+          </div>
+        </div>
+        <div class="game-view"></div>
+        <div class="game-loader" aria-live="polite">
+          <span class="spinner" aria-hidden="true"></span>
+          <p>Загружаем игру…</p>
+          <span class="progress" aria-hidden="true"><i></i></span>
+        </div>
+      </article>
+    </div>
+
+    <div class="slide">
+      <article class="game" data-game="soon" data-title="Азбука" tabindex="0" aria-label="Азбука">
+        <div class="cover cover-stub cover-alphabet">
+          <div class="stub-caption">
+            <h2>Азбука</h2>
+            <p>Учим буквы от А до Я</p>
+          </div>
+        </div>
+        <div class="game-view"></div>
+        <div class="game-loader" aria-live="polite">
+          <span class="spinner" aria-hidden="true"></span>
+          <p>Загружаем игру…</p>
+          <span class="progress" aria-hidden="true"><i></i></span>
+        </div>
+      </article>
+    </div>
+
+    <div class="slide">
+      <article class="game" data-game="soon" data-title="Цифры" tabindex="0" aria-label="Цифры">
+        <div class="cover cover-stub cover-numbers">
+          <div class="stub-caption">
+            <h2>Цифры</h2>
+            <p>Считаем от 1 до 10</p>
+          </div>
+        </div>
+        <div class="game-view"></div>
+        <div class="game-loader" aria-live="polite">
+          <span class="spinner" aria-hidden="true"></span>
+          <p>Загружаем игру…</p>
+          <span class="progress" aria-hidden="true"><i></i></span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  </div>
+  </div>
+
+  <script src="../js/device.js?v=3"></script>
+  <script src="../js/paint.js?v=7"></script>
+  <script src="../js/games.js?v=14"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#12100e" />
+  <title>Раскраска</title>
+  <link rel="stylesheet" href="../../css/coloring.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="btn btn-icon" href="../index.html" aria-label="Назад">←</a>
+      <div class="title-block">
+        <h1 id="pageTitle">Крокодил</h1>
+        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+      </div>
+      <button class="btn btn-icon" id="soundBtn" type="button" aria-label="Звук" aria-pressed="true">🔊</button>
+    </header>
+
+    <div class="pages" id="pages" role="tablist" aria-label="Картинки">
+      <button class="page-btn active" type="button" role="tab" data-page="crocodile" aria-selected="true">
+        <img src="../../assets/coloring/crocodile.svg" alt="" />
+        <span>Крокодил</span>
+      </button>
+      <button class="page-btn" type="button" role="tab" data-page="lion" aria-selected="false">
+        <img src="../../assets/coloring/lion.svg" alt="" />
+        <span>Лев</span>
+      </button>
+    </div>
+
+    <section class="canvas-wrap" aria-label="Холст">
+      <div id="stage"></div>
+    </section>
+
+    <div class="hint-bar" id="hint">Выбери цвет и нажми внутрь контура</div>
+
+    <footer class="dock" aria-label="Палитра">
+      <div class="colors" id="colors"></div>
+      <div class="tools">
+        <button class="tool-btn active" id="fillTool" type="button">Заливка</button>
+        <button class="tool-btn" id="eraseTool" type="button">Ластик</button>
+        <button class="tool-btn danger" id="resetBtn" type="button">Сброс</button>
+        <button class="tool-btn done" id="doneBtn" type="button">Готово</button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="overlay" id="completeModal" role="dialog" aria-modal="true" aria-labelledby="completeTitle">
+    <div class="modal">
+      <div class="confetti" id="confetti" aria-hidden="true"></div>
+      <div class="big">🎉</div>
+      <h2 id="completeTitle">Ура! Картинка готова</h2>
+      <p id="completeText">Красиво получилось</p>
+      <div class="modal-actions">
+        <button class="btn" id="againBtn" type="button">Ещё раз</button>
+        <button class="btn secondary" id="otherBtn" type="button">Другая картинка</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/coloring.js"></script>
+</body>
+</html>

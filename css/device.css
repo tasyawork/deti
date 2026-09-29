@@ -1,0 +1,111 @@
+:root {
+  --screen-w: 430px;
+  --screen-h: 932px;
+  --device-radius: 55px;
+  --device-time: 520ms;
+  --device-ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #111113;
+}
+
+/* Экран iPhone 15 Pro Max: фиксированные 430×932, масштабируется целиком под окно */
+
+.device {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: var(--screen-w);
+  height: var(--screen-h);
+  margin-left: calc(var(--screen-w) / -2);
+  margin-top: calc(var(--screen-h) / -2);
+  border-radius: var(--device-radius);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 1.5px #2c2c2e, 0 30px 80px rgba(0, 0, 0, 0.55);
+  transform: rotate(0deg) scale(var(--device-scale, 1));
+  transform-origin: 50% 50%;
+  isolation: isolate;
+}
+
+/* Анимация только для поворота в плеере — не при загрузке страницы/смене таба */
+.device.is-ready {
+  transition: transform var(--device-time) var(--device-ease);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation: none;
+}
+
+.device.is-landscape,
+html.is-player-return .device {
+  transform: rotate(-90deg) scale(var(--device-scale, 1));
+}
+
+html.is-player-return .device.is-ready {
+  transition: none;
+}
+
+html.is-player-return .device-screen {
+  overflow: hidden;
+}
+
+html.is-player-return .player {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transition: none;
+}
+
+html.is-player-return .player-chrome,
+html.is-player-return .player-shade,
+html.is-player-return .player-frame {
+  visibility: hidden;
+}
+
+html.is-player-return .series-sheet {
+  transform: none;
+  pointer-events: auto;
+  transition: none;
+}
+
+.device-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.device-screen::-webkit-scrollbar { display: none; }
+
+.device-screen.is-locked,
+.device-screen:has(> .reels) {
+  overflow: hidden;
+}
+
+.device .home,
+.device .search-page,
+.device .reels {
+  width: 100%;
+}
+
+.device .slide {
+  height: calc(var(--screen-h) - var(--gap) * 2 - var(--peek));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --device-time: 1ms; }
+}

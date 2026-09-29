@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200" preserveAspectRatio="xMidYMid meet">
+  <g fill="#1c1916" stroke="#f4efe6" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path class="region" data-name="tail" d="M48 64C28 96 40 142 92 154C124 162 146 140 140 118C118 132 86 128 66 104C52 86 46 70 48 64Z"/>
+    <path class="region" data-name="body" d="M258 114C244 114 236 86 214 84C192 82 184 114 162 114C148 114 140 90 122 98C112 104 108 116 110 126L116 134L142 132L140 162C140 174 154 176 162 168L166 132L200 130L198 160C198 172 212 174 220 166L224 128L258 122C266 118 266 114 258 114Z"/>
+    <path class="region" data-name="jawTop" d="M232 90C278 68 346 74 378 94C390 102 386 118 370 120C332 126 276 116 244 104C234 100 222 96 232 90Z"/>
+    <path class="region" data-name="jawBottom" d="M248 112C298 122 342 140 372 158C382 166 370 176 358 168C322 152 280 136 250 124C240 120 238 114 248 112Z"/>
+    <path class="region" data-name="mouth" d="M256 110C300 120 338 134 360 148L350 156C318 140 282 126 254 118Z"/>
+    <path class="region" data-name="teethTop" d="M292 116L300 134L310 116Z M316 120L324 138L334 120Z M338 124L346 140L356 126Z"/>
+    <path class="region" data-name="teethBottom" d="M306 146L314 130L324 148Z M328 150L336 134L346 152Z"/>
+    <circle class="region" data-name="eye" cx="268" cy="98" r="16"/>
+  </g>
+  <g class="detail" fill="none" stroke="#f4efe6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="272" cy="98" r="7" fill="#f4efe6" stroke="none"/>
+    <circle cx="270" cy="96" r="2.2" fill="#1c1916" stroke="none"/>
+    <path d="M250 112c8 7 18 7 26 0"/>
+    <path d="M348 108c8 4 14 10 16 16"/>
+  </g>
+</svg>

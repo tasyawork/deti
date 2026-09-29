@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#000000" />
+  <title>Поиск</title>
+  <script>document.documentElement.style.setProperty("--device-scale", Math.max(0.2, Math.min(1, (innerWidth - 32) / 430, (innerHeight - 32) / 932)));</script>
+  <link rel="stylesheet" href="../css/search.css?v=2" />
+  <link rel="stylesheet" href="../css/tabbar.css?v=4" />
+  <link rel="stylesheet" href="../css/device.css?v=3" />
+</head>
+<body>
+  <div class="device" id="device">
+  <div class="device-screen" id="device-screen">
+  <main class="search-page">
+    <div class="search-bar">
+      <label class="search-input">
+        <img src="../assets/search/icon-search.svg" width="16" height="16" alt="" />
+        <input id="query" type="search" placeholder="Фильмы, сериалы и персоны" autocomplete="off" enterkeyhint="search" />
+      </label>
+      <button class="icon-button" type="button" aria-label="Фильтры">
+        <img src="../assets/search/icon-filter.svg" width="16" height="16" alt="" />
+      </button>
+    </div>
+
+    <nav class="chips" aria-label="Разделы каталога">
+      <a class="chip" href="#">Каталог</a>
+      <a class="chip" href="../games/index.html">Игры</a>
+      <a class="chip" href="#">ТВ+</a>
+      <a class="chip" href="#">Сериалы</a>
+      <a class="chip" href="#">Фильмы</a>
+      <a class="chip" href="#">Мультфильмы</a>
+      <img class="chip-dot" src="../assets/search/dot.svg" width="4" height="4" alt="" />
+      <a class="chip" href="#">Американские комедии</a>
+      <a class="chip" href="#">Русские драмы</a>
+      <a class="chip" href="#">Фантастические боевики</a>
+    </nav>
+
+    <section class="block">
+      <h2 class="block-title" id="resultsTitle">Результаты поиска</h2>
+      <div class="poster-grid" id="results">
+        <p class="search-status">Загружаем…</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Основная навигация">
+    <a class="tab" href="../index.html"><img src="../assets/Иконки/лента.png" alt="" />Лента</a>
+    <a class="tab active" href="index.html" aria-current="page"><img src="../assets/Иконки/поиск.png" alt="" />Поиск</a>
+    <a class="tab" href="../games/index.html"><img src="../assets/Иконки/игры.png" alt="" />Игры</a>
+    <a class="tab" href="#"><img src="../assets/Иконки/мое.png" alt="" />Моё</a>
+    <a class="tab" href="#"><img src="../assets/Иконки/Тася.png" alt="" />Тася</a>
+  </nav>
+  </div>
+  </div>
+
+  <script src="../js/device.js?v=3"></script>
+  <script src="../js/search.js?v=2"></script>
+</body>
+</html>
