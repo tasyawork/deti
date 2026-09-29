@@ -141,15 +141,10 @@
       </a>`;
     }).join("");
     const promo = `<a class="cw cw-game" href="#" data-game="coloring" aria-label="Раскрась Трёх котов">
-        <span class="cw-game__cats" aria-hidden="true">
-          <img src="assets/coloring/korzhik.svg" alt="" draggable="false" />
-          <img src="assets/coloring/karamelka.svg" alt="" draggable="false" />
-          <img src="assets/coloring/kompot.svg" alt="" draggable="false" />
-        </span>
-        <span class="cw-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 6h10a5 5 0 0 1 4.9 6l-.8 4a3 3 0 0 1-5.2 1.3L14.2 15H9.8l-1.7 2.3A3 3 0 0 1 2.9 16l-.8-4A5 5 0 0 1 7 6Zm0 3v1.5H5.5v2H7V14h2v-1.5h1.5v-2H9V9H7Zm9.5 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-2 2.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg>Игра</span>
+        <img class="cw__img" src="assets/feed/coloring-promo.png" alt="" draggable="false" />
         <span class="cw__shade"><span class="cw__copy">
           <span class="cw__title">Раскрась Трёх котов</span>
-          <span class="cw__sub">Вы смотрели Три Кота</span>
+          <span class="cw__sub">Любимые герои ждут тебя</span>
         </span></span>
       </a>`;
     host.hidden = false;

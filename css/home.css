@@ -136,11 +136,18 @@ body {
 .cw__shade {
   position: absolute;
   inset: auto 0 0;
-  height: 60%;
+  height: 58%;
   display: flex;
   align-items: flex-end;
-  padding: 8px 10px 10px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent);
+  padding: 22px 10px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.86) 0%,
+    rgba(0, 0, 0, 0.72) 36%,
+    rgba(0, 0, 0, 0.38) 64%,
+    rgba(0, 0, 0, 0.12) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .cw__copy {
@@ -182,53 +189,6 @@ body {
   height: 100%;
   background: #f30745;
 }
-
-.cw-game {
-  background: #fff4e0;
-}
-
-.cw-game__cats {
-  position: absolute;
-  inset: 2px 4px 30px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0;
-}
-
-.cw-game__cats img {
-  width: 34%;
-  height: 100%;
-  object-fit: contain;
-  object-position: 50% 100%;
-  transform: scale(1.22);
-  transform-origin: 50% 100%;
-}
-
-.cw-game .cw__shade {
-  height: auto;
-  padding-top: 26px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 45%, transparent);
-}
-
-.cw-badge {
-  position: absolute;
-  z-index: 1;
-  top: 8px;
-  right: 8px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  height: 22px;
-  padding: 0 8px 0 6px;
-  border-radius: 11px;
-  background: #f30745;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.cw-badge svg { width: 14px; height: 14px; }
 
 .shelf {
   margin-top: 18px;
