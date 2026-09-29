@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#000000" />
   <title>Игры</title>
   <script>document.documentElement.style.setProperty("--device-scale", Math.max(0.2, Math.min(1, (innerWidth - 32) / 430, (innerHeight - 32) / 932)));</script>
-  <link rel="stylesheet" href="../css/hub.css?v=31" />
-  <link rel="stylesheet" href="../css/device.css?v=7" />
+  <link rel="stylesheet" href="../css/hub.css?v=38" />
+  <link rel="stylesheet" href="../css/device.css?v=8" />
 </head>
 <body>
   <nav class="variant-switch" aria-label="Вариант оформления">
@@ -30,6 +30,23 @@
           <div class="cover-caption">
             <h2>Азбука</h2>
             <p>Учим буквы от А до Я</p>
+          </div>
+        </div>
+        <div class="game-view"></div>
+        <div class="game-loader" aria-live="polite">
+          <p>Загружаем игру…</p>
+          <span class="progress" aria-hidden="true"><i></i></span>
+        </div>
+      </article>
+    </div>
+
+    <div class="slide">
+      <article class="game" data-game="memory" data-title="Память" tabindex="0" aria-label="Память">
+        <div class="cover cover-memory">
+          <img src="../assets/games/memory-cover.png?v=1" alt="" />
+          <div class="cover-caption">
+            <h2>Память</h2>
+            <p>Найди пары</p>
           </div>
         </div>
         <div class="game-view"></div>
@@ -78,8 +95,9 @@
   </div>
   </div>
 
-  <script src="../js/device.js?v=7"></script>
+  <script src="../js/device.js?v=8"></script>
   <script src="../js/paint.js?v=8"></script>
-  <script src="../js/games.js?v=18"></script>
+  <script src="../js/memory.js?v=4"></script>
+  <script src="../js/games.js?v=19"></script>
 </body>
 </html>

@@ -9,7 +9,12 @@
 
   reels.querySelectorAll(".game").forEach((game) => {
     game.classList.add("is-inline");
-    window.PaintGame(game.querySelector(".game-view"), {
+    const view = game.querySelector(".game-view");
+    if (game.dataset.game === "memory") {
+      window.MemoryGame(view);
+      return;
+    }
+    window.PaintGame(view, {
       assets: "../../assets/coloring/",
       isBlocked: () => false,
     });

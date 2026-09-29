@@ -237,7 +237,7 @@
         <div class="paint-stage">
           <div class="paper">
             <canvas></canvas>
-            <img alt="" />
+            <img alt="" draggable="false" />
           </div>
         </div>
         <div class="paint-dock">

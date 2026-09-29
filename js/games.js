@@ -27,6 +27,7 @@
       assets: "../assets/coloring/",
       isBlocked: () => gesture.active,
     }),
+    memory: (view) => window.MemoryGame(view),
     soon: (view, game) => {
       view.innerHTML = `<div class="soon-screen"><p>${game.dataset.title}</p><span>Игра скоро появится</span></div>`;
       return { ready: Promise.resolve(), cancelStroke() {} };

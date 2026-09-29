@@ -42,15 +42,19 @@
     const el = document.querySelector(".variant-switch");
     if (!el) return;
     const scale = parseFloat(device.style.getPropertyValue("--device-scale")) || 1;
-    const frameLeft = (window.innerWidth - WIDTH * scale) / 2;
+    const landscape = device.classList.contains("is-landscape")
+      || document.documentElement.classList.contains("is-player-return");
+    const frameLeft = (window.innerWidth - (landscape ? HEIGHT : WIDTH) * scale) / 2;
     const gap = 20;
     const edge = 16;
-    el.classList.remove("is-compact");
+    el.classList.remove("is-compact", "is-hidden");
     if (frameLeft - el.offsetWidth - gap < edge) el.classList.add("is-compact");
     const width = el.offsetWidth;
+    const left = frameLeft - width - gap;
+    el.classList.toggle("is-hidden", left < edge);
     el.style.transform = "translateY(-50%)";
     el.style.top = "50%";
-    el.style.left = `${Math.max(edge, frameLeft - width - gap)}px`;
+    el.style.left = `${Math.max(edge, left)}px`;
   }
 
   function matrix() {

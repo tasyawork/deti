@@ -140,6 +140,11 @@ html.is-player-return .series-sheet {
 
 .variant-switch.is-compact { width: 84px; gap: 6px; }
 
+.variant-switch.is-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .variant-switch.is-compact a {
   height: 30px;
   border-radius: 8px;

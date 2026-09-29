@@ -141,7 +141,7 @@
       </a>`;
     }).join("");
     const promo = `<a class="cw cw-game" href="#" data-game="coloring" aria-label="Раскрась Трёх котов">
-        <img class="cw__img" src="assets/feed/coloring-promo.png" alt="" draggable="false" />
+        <img class="cw__img" src="assets/feed/coloring-promo.png?v=4" alt="" draggable="false" />
         <span class="cw__shade"><span class="cw__copy">
           <span class="cw__title">Раскрась Трёх котов</span>
           <span class="cw__sub">Любимые герои ждут тебя</span>
